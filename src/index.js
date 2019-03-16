@@ -6,14 +6,14 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import Store from './stores/create-store'
+import { createStore } from './stores'
 
-const rootStore = new Store()
+const stores = createStore()
 const browserHistory = createBrowserHistory()
-const history = syncHistoryWithStore(browserHistory, rootStore.routing)
+const history = syncHistoryWithStore(browserHistory, stores.routerStore)
 
 ReactDOM.render(
-  <Provider {...rootStore}>
+  <Provider {...stores}>
     <Router history={history}>
       <App />
     </Router>
