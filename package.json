@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn && yarn build"
+    "predeploy": "mkdir -p build && cp public/stub.html build/index.html",
+    "deploy": "yarn predeploy && yarn && yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
