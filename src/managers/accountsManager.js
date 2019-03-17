@@ -33,4 +33,3 @@ export const fetchAccounts = () =>
       }
     })
     .catch(() => ({ ok: false, errors: { nonField: ['Unknown error'] } }))
-

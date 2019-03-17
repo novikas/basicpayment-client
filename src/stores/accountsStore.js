@@ -1,19 +1,17 @@
 import { action, decorate, observable } from 'mobx'
 import { accountsManager } from '../managers'
-import { authRepository } from '../repositories'
 
 class AccountsStore {
   list = []
 
   load = () => {
-    accountsManager.fetchAccounts(authRepository.getTokens().accessToken)
-      .then((res) => {
-        if (res.ok) {
-          this.list = res.payload
-        } else {
-          console.log('Failed to load accounts', res)
-        }
-      })
+    accountsManager.fetchAccounts().then(res => {
+      if (res.ok) {
+        this.list = res.payload
+      } else {
+        console.log('Failed to load accounts', res)
+      }
+    })
   }
 }
 

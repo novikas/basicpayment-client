@@ -28,9 +28,8 @@ export const fetchTransactions = (params) =>
         ok: false,
         errors: {
           nonField,
-          ...fieldErrors
+          ...fieldErrors,
         },
       }
     })
     .catch(() => ({ ok: false, errors: { nonField: ['Unknown error'] } }))
-
