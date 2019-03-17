@@ -48,6 +48,7 @@ class AuthStore {
   saveTokensAndNavigateToReferer = tokens => {
     authRepository.saveTokens(tokens)
     RouterStore.push(this.referer || '/')
+    this.referer = undefined
   }
 
   handleTokensResponse = res => {
@@ -76,8 +77,9 @@ class AuthStore {
   }
 
   signOut = () => {
+    this.referer = RouterStore.location.pathname
     authRepository.clearTokens()
-    RouterStore.push(this.referer || '/signin')
+    RouterStore.push('/signin')
   }
 }
 
