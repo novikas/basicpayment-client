@@ -53,7 +53,6 @@ class AuthStore {
 
   handleTokensResponse = res => {
     if (res.ok) {
-      console.log(res.payload)
       this.saveTokensAndNavigateToReferer(res.payload)
     } else {
       set(this.errors, res.errors)
