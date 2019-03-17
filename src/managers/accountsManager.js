@@ -1,12 +1,9 @@
 import { ENDPOINTS } from '../api'
+import { authenticatedFetch } from './utils'
 
-export const fetchAccounts = (token) =>
-  fetch(ENDPOINTS.accounts, {
+export const fetchAccounts = () =>
+  authenticatedFetch(ENDPOINTS.accounts, {
     method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
   })
     .then(res => {
       if (res.status === 200 || res.status === 400) {

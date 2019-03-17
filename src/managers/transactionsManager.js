@@ -1,14 +1,9 @@
 import { ENDPOINTS } from '../api'
+import { authenticatedFetch, buildUrl } from './utils'
 
-export const fetchTransactions = (token, filters) =>
-  fetch(`${ENDPOINTS.transactions}
-    ${filters ? `?${new URLSearchParams(filters)}` : ''}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-  })
+export const fetchTransactions = (params) =>
+  authenticatedFetch(
+    buildUrl(ENDPOINTS.transactions, params), { method: 'GET' })
     .then(res => {
       if (res.status === 200 || res.status === 400) {
         return Promise.all([res.status, res.json()])
