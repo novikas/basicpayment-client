@@ -48,10 +48,7 @@ const getTokens = (url, username, password) =>
         },
       }
     })
-    .catch((err) => {
-      console.log(err)
-      return { ok: false, errors: { nonField: ['Unknown error'] } }
-    })
+    .catch((err) => ({ ok: false, errors: { nonField: ['Unknown error'] } }))
 
 export const signUp = (username, password) =>
   getTokens(ENDPOINTS.signUp, username, password)
