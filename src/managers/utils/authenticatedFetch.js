@@ -1,6 +1,6 @@
+import { ENDPOINTS } from '../../api'
 import { authRepository } from '../../repositories'
 import { AuthStore } from '../../stores'
-import { ENDPOINTS } from '../../api'
 
 export const authenticatedFetch = async (url, options, isRetry) => {
   let { accessToken, refreshToken } = authRepository.getTokens()
