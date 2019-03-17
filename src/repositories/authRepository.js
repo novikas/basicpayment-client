@@ -9,10 +9,10 @@ export const getTokens = () => ({
 })
 
 export const clearAccessToken = () => {
-  localStorage.setItem('accessToken', undefined)
+  localStorage.setItem('accessToken', '')
 }
 
 export const clearTokens = () => {
-  localStorage.setItem('accessToken', undefined)
-  localStorage.setItem('refreshToken', undefined)
+  localStorage.setItem('accessToken', '')
+  localStorage.setItem('refreshToken', '')
 }

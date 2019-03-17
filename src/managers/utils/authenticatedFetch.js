@@ -25,7 +25,7 @@ export const authenticatedFetch = async (url, options, isRetry) => {
     }
 
     const { access, refresh } = await refreshRes.json()
-
+    console.log(access, refresh)
     accessToken = access
     refreshToken = refresh
 
@@ -34,7 +34,10 @@ export const authenticatedFetch = async (url, options, isRetry) => {
 
   const res = await fetch(url, {
     ...options,
-    headers: { ...options.headers, Authorization: `Bearer ${accessToken}` },
+    headers: {
+      ...options.headers,
+      Authorization: `Bearer ${accessToken}`,
+    },
   })
 
   if (res.status === 401) {
