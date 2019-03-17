@@ -2,7 +2,7 @@ import { inject, observer } from 'mobx-react'
 import * as React from 'react'
 import { Container, Row, Table, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { TransactionForm } from '../components'
+import { TransactionForm, SignOutButton } from '../components'
 
 class Accounts extends React.Component {
   componentDidMount() {
@@ -36,6 +36,7 @@ class Accounts extends React.Component {
           </tbody>
         </Table>
         <Link to="/transactions">View transactions log</Link>
+        <SignOutButton />
         <Row>
           <Col xs={4}>
             <TransactionForm accounts={accountsStore.list} />

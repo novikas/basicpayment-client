@@ -7,6 +7,7 @@ export class FilterSwitch extends React.Component {
     
     return (
       <ToggleButtonGroup
+        style={{ margin: '5px' }}
         type="radio"
         value={value}
         name={name}

@@ -1,7 +1,7 @@
 export const ENDPOINTS = {
-  signUp: '/auth/sign-up/',
-  getToken: '/auth/token/',
-  refreshToken: '/auth/token/refresh',
-  accounts: '/accounts/',
-  transactions: '/accounts/transactions/',
+  signUp: '/api/auth/sign-up/',
+  getToken: '/api/auth/token/',
+  refreshToken: '/api/auth/token/refresh',
+  accounts: '/api/accounts/',
+  transactions: '/api/accounts/transactions/',
 }

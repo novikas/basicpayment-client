@@ -19,7 +19,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "yarn && yarn build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +36,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://95.27.76.10:8000"
+  "proxy": "http://127.0.0.1:8000",
+  "old_proxy": "http://95.27.76.10:8000"
 }

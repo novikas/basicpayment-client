@@ -4,10 +4,10 @@ import { transactionsManager } from '../managers'
 class TransactionsStore {
   list = []
   params = {
+    type: 2,
     ordering: {
-      type: undefined,
+      // created_at: false,
       amount: false,
-      created_at: false,
     }
   }
 
@@ -15,7 +15,7 @@ class TransactionsStore {
     const params = {
       ordering: this.serializeOrdering(),
     }
-    if (typeof(this.params.type) !== 'undefined') {
+    if (this.params.type !== 2) {
       params.type = this.params.type
     }
 
@@ -34,7 +34,7 @@ class TransactionsStore {
   }
 
   setTypeFilter = (value) => {
-    this.params.type = value !== this.params.type ? value : undefined
+    this.params.type = value
     this.load()
   }
 
