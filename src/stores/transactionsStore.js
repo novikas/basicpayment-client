@@ -5,6 +5,7 @@ class TransactionsStore {
   list = []
   params = {
     ordering: {
+      type: undefined,
       amount: false,
       created_at: false,
     }
@@ -12,7 +13,10 @@ class TransactionsStore {
 
   load = () => {
     const params = {
-      ordering: this.serializeOrdering()
+      ordering: this.serializeOrdering(),
+    }
+    if (typeof(this.params.type) !== 'undefined') {
+      params.type = this.params.type
     }
 
     transactionsManager.fetchTransactions(params).then(res => {
@@ -29,6 +33,11 @@ class TransactionsStore {
     this.load()
   }
 
+  setTypeFilter = (value) => {
+    this.params.type = value !== this.params.type ? value : undefined
+    this.load()
+  }
+
   serializeOrdering = () => {
     const { ordering } = this.params
     return Object.keys(ordering)
@@ -42,6 +51,7 @@ const DecoratedTransactionsStore = decorate(TransactionsStore, {
   load: action,
   params: observable,
   toggleOrdering: action,
+  setTypeFilter: action,
 })
 
 export default new DecoratedTransactionsStore()

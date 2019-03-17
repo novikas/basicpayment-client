@@ -2,7 +2,7 @@ import * as React from 'react'
 import { inject, observer } from 'mobx-react'
 import { Container, Table } from 'react-bootstrap'
 
-import { SortingSwitch } from '../components'
+import { SortingSwitch, FilterSwitch } from '../components'
 
 class Transactions extends React.Component {
   componentDidMount() {
@@ -12,16 +12,31 @@ class Transactions extends React.Component {
 
   render() {
     const {
-      transactionsStore: { list, toggleOrdering, params },
+      transactionsStore: { list, toggleOrdering, setTypeFilter, params },
     } = this.props
 
     return (
       <Container>
         <h1>Transactions Log</h1>
+        <FilterSwitch
+          value={params.type}
+          name={'type'}
+          options={[
+            {
+              name: 'Debt',
+              value: 0,
+            },
+            {
+              name: 'Credit',
+              value: 1,
+            },
+          ]}
+          handleChange={setTypeFilter}
+        />
         <Table>
           <thead>
             <tr>
-              <th>#</th>
+              <th>Type</th>
               <th>
                 <SortingSwitch
                   title={'Amount'}
@@ -30,7 +45,6 @@ class Transactions extends React.Component {
                   toggleDirection={toggleOrdering}
                 />
               </th>
-              <th>Type</th>
               <th>
                 <SortingSwitch
                   title={'Date'}
@@ -45,9 +59,8 @@ class Transactions extends React.Component {
             {list.map((item, index) => {
               return (
                 <tr key={index}>
-                  <td>{item.id}</td>
+                  <td>{item.type_name}</td>
                   <td>{item.amount}</td>
-                  <td>{item.type}</td>
                   <td>{item.created_at}</td>
                 </tr>
               )
