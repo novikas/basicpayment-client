@@ -1,5 +1,6 @@
 export const ENDPOINTS = {
   signUp: '/auth/sign-up/',
   getToken: '/auth/token/',
-  refreshToken: '/auth/token/refresh',
+  refreshToken: '/auth/token/refresh/',
+  accounts: '/accounts/',
 }
