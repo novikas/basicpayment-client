@@ -3,4 +3,5 @@ export const ENDPOINTS = {
   getToken: '/auth/token/',
   refreshToken: '/auth/token/refresh/',
   accounts: '/accounts/',
+  transactions: '/accounts/transactions/',
 }
