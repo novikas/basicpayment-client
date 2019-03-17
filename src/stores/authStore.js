@@ -59,6 +59,16 @@ class AuthStore {
     }
   }
 
+  handleSignUpResponse = res => {
+    if (res.ok) {
+      authManager
+        .signIn(this.values.username, this.values.password)
+        .then(this.handleTokensResponse)
+    } else {
+      set(this.errors, res.errors)
+    }
+  }
+
   signIn = () => {
     this.resetErrors()
 
@@ -72,7 +82,7 @@ class AuthStore {
 
     authManager
       .signUp(this.values.username, this.values.password)
-      .then(this.handleTokensResponse)
+      .then(this.handleSignUpResponse)
   }
 
   signOut = () => {

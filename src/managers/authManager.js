@@ -13,6 +13,10 @@ const getTokens = (url, username, password) =>
         return Promise.all([res.status, res.json()])
       }
 
+      if (res.status === 201) {
+        return Promise.all([res.status])
+      }
+
       return Promise.all([
         res.status,
         { errors: { nonField: ['Unknown error'] } },
@@ -27,7 +31,12 @@ const getTokens = (url, username, password) =>
             refreshToken: json.refresh,
           },
         }
+      } else if (status === 201) {
+        return {
+          ok: true,
+        }
       }
+
 
       const { non_field_errors: nonField, ...fieldErrors } = json
 
@@ -39,7 +48,10 @@ const getTokens = (url, username, password) =>
         },
       }
     })
-    .catch(() => ({ ok: false, errors: { nonField: ['Unknown error'] } }))
+    .catch((err) => {
+      console.log(err)
+      return { ok: false, errors: { nonField: ['Unknown error'] } }
+    })
 
 export const signUp = (username, password) =>
   getTokens(ENDPOINTS.signUp, username, password)
