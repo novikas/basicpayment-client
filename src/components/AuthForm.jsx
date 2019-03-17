@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { ErrorMessage } from './ErrorMessage'
 
 export class AuthForm extends React.Component {
   componentWillUnmount() {
@@ -57,7 +58,3 @@ export class AuthForm extends React.Component {
     )
   }
 }
-
-const ErrorMessage = props => (
-  <Form.Text style={{ color: '#dc3545' }}>{props.children}</Form.Text>
-)
