@@ -3,11 +3,16 @@ import { transactionsManager } from '../managers'
 
 class TransactionsStore {
   list = []
+  
+  TYPE_ALL = 2
+  TYPE_CREDIT = 1
+  TYPE_DEBT = 0
+
+  
   params = {
-    type: 2,
+    type: this.TYPE_ALL,
     ordering: {
-      // created_at: false,
-      amount: false,
+      created_at: false,
     }
   }
 
@@ -15,7 +20,7 @@ class TransactionsStore {
     const params = {
       ordering: this.serializeOrdering(),
     }
-    if (this.params.type !== 2) {
+    if (this.params.type !== this.TYPE_ALL) {
       params.type = this.params.type
     }
 

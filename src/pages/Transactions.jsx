@@ -12,29 +12,43 @@ class Transactions extends React.Component {
 
   render() {
     const {
-      transactionsStore: { list, toggleOrdering, setTypeFilter, params },
+      transactionsStore: {
+        list,
+        toggleOrdering,
+        setTypeFilter,
+        params,
+        TYPE_ALL,
+        TYPE_CREDIT,
+        TYPE_DEBT,
+      },
     } = this.props
 
     return (
       <Container>
         <Col>
           <h1>Transactions Log</h1>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
             <FilterSwitch
               value={params.type}
               name={'type'}
               options={[
                 {
                   name: 'Debt',
-                  value: 0,
+                  value: TYPE_DEBT,
                 },
                 {
                   name: 'Credit',
-                  value: 1,
+                  value: TYPE_CREDIT,
                 },
                 {
                   name: 'All',
-                  value: 2,
+                  value: TYPE_ALL,
                 },
               ]}
               handleChange={setTypeFilter}
@@ -45,16 +59,14 @@ class Transactions extends React.Component {
             <thead>
               <tr>
                 <th>Type</th>
+                <th>Amount</th>
                 <th>
                   <SortingSwitch
-                    title={'Amount'}
-                    direction={params.ordering['amount']}
-                    name={'amount'}
+                    title={'Date'}
+                    direction={params.ordering['created_at']}
+                    name={'created_at'}
                     toggleDirection={toggleOrdering}
                   />
-                </th>
-                <th>
-                  Date
                 </th>
               </tr>
             </thead>
