@@ -1,5 +1,5 @@
 import { authRepository } from '../../repositories'
-import { authStore } from '../../stores'
+import { AuthStore } from '../../stores'
 import { ENDPOINTS } from '../../api'
 
 export const authenticatedFetch = async (url, options, isRetry) => {
@@ -7,7 +7,7 @@ export const authenticatedFetch = async (url, options, isRetry) => {
 
   if (!accessToken) {
     if (!refreshToken) {
-      authStore.signOut()
+      AuthStore.signOut()
 
       return
     }
@@ -18,7 +18,7 @@ export const authenticatedFetch = async (url, options, isRetry) => {
     })
 
     if (refreshRes.status !== 200) {
-      authStore.signOut()
+      AuthStore.signOut()
 
       return
     }
@@ -42,7 +42,7 @@ export const authenticatedFetch = async (url, options, isRetry) => {
 
       return authenticatedFetch(url, options, true)
     } else {
-      authStore.signOut()
+      AuthStore.signOut()
 
       return
     }
