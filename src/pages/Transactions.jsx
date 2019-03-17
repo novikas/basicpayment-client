@@ -2,6 +2,8 @@ import * as React from 'react'
 import { inject, observer } from 'mobx-react'
 import { Container, Table } from 'react-bootstrap'
 
+import { SortingSwitch } from '../components'
+
 class Transactions extends React.Component {
   componentDidMount() {
     const { transactionsStore } = this.props
@@ -10,7 +12,7 @@ class Transactions extends React.Component {
 
   render() {
     const {
-      transactionsStore: { list },
+      transactionsStore: { list, toggleOrdering, params },
     } = this.props
 
     return (
@@ -20,9 +22,23 @@ class Transactions extends React.Component {
           <thead>
             <tr>
               <th>#</th>
-              <th>Amount</th>
+              <th>
+                <SortingSwitch
+                  title={'Amount'}
+                  direction={params.ordering['amount']}
+                  name={'amount'}
+                  toggleDirection={toggleOrdering}
+                />
+              </th>
               <th>Type</th>
-              <th>Date</th>
+              <th>
+                <SortingSwitch
+                  title={'Date'}
+                  direction={params.ordering['created_at']}
+                  name={'created_at'}
+                  toggleDirection={toggleOrdering}
+                />
+              </th>
             </tr>
           </thead>
           <tbody>
